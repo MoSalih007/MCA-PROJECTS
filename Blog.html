@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Personal Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0a0c1a;
+      --card:#121424;
+      --muted:#9da4c2;
+      --accent1:#4da6ff;
+      --accent2:#6ee7b7;
+      --glass: rgba(255,255,255,0.03);
+      --radius:16px;
+      --max-width:1100px;
+      font-family: 'Inter', system-ui;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box;scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg) 0%, #05070f 100%);
+      color:#e9eefc;
+      padding:40px 20px;
+      display:flex;justify-content:center;
+    }
+    .container{width:100%;max-width:var(--max-width)}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .logo{
+      width:48px;height:48px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Orbitron';
+      font-size:18px;
+    }
+    nav a{color:var(--muted);text-decoration:none;margin-left:20px;font-weight:500}
+    nav a:hover{color:var(--accent1)}
+
+    section{margin-bottom:60px}
+
+    .hero{
+      background:linear-gradient(135deg,rgba(77,166,255,0.1),rgba(110,231,183,0.08));
+      border-radius:var(--radius);
+      padding:28px;display:flex;gap:24px;align-items:center;
+      margin-bottom:40px;
+    }
+    .hero-left{flex:1}
+    .eyebrow{color:var(--accent1);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:1px;font-family:'Orbitron'}
+    .hero h1{margin:6px 0 8px;font-size:28px;font-family:'Orbitron'}
+    .hero p{color:var(--muted);margin:0}
+    .cta{margin-top:14px;display:inline-block;padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:black;font-weight:700;text-decoration:none}
+
+    .posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .post{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.05);transition:transform .2s;cursor:pointer}
+    .post:hover{transform:translateY(-4px)}
+    .post .meta{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-family:'Orbitron'}
+    .post .meta .tag{background:var(--glass);padding:6px 10px;border-radius:999px;font-size:12px;color:var(--accent1)}
+    .post h3{margin:6px 0 8px;font-size:18px;font-family:'Orbitron'}
+    .post p{color:var(--muted);margin:0}
+
+    .contact-form{background:var(--card);padding:20px;border-radius:12px}
+    .contact-form label{display:block;margin-bottom:6px;font-weight:600}
+    .contact-form input,.contact-form textarea{width:100%;padding:10px;margin-bottom:12px;border:none;border-radius:8px;background:#1b1e2d;color:#fff}
+    .contact-form button{padding:10px 16px;border:none;border-radius:8px;background:linear-gradient(90deg,var(--accent1),var(--accent2));font-weight:700;color:black;cursor:pointer}
+
+    footer{margin-top:26px;color:var(--muted);text-align:center;font-size:14px;font-family:'Orbitron'}
+
+    /* Modal */
+    .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;z-index:1000}
+    .modal-content{background:var(--card);padding:20px;border-radius:12px;max-width:600px;width:90%;max-height:80%;overflow:auto}
+    .modal-content h2{font-family:'Orbitron'}
+    .modal-content button{margin-top:12px;padding:8px 12px;border:none;border-radius:8px;cursor:pointer}
+    .close-btn{background:#ff5555;color:white}
+    .delete-btn{background:#ff0000;color:white;margin-left:10px}
+
+    @media (max-width:900px){
+      header{flex-direction:column;align-items:flex-start}
+      .hero{flex-direction:column;text-align:center}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="brand" href="#home">
+        <div class="logo">MS</div>
+        <div>
+          <div style="font-weight:700;font-family:'Orbitron'">Salihs Blog</div>
+        </div>
+      </a>
+      <nav>
+        <a href="#articles">Articles</a>
+        <a href="#ideas">Ideas</a>
+        <a href="#contact">Contact</a>
+        <a href="#newpost">Create Post</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="hero-left">
+        <div class="eyebrow">Welcome to</div>
+        <h1>Mohammed Salihs Blog</h1>
+        <p>This is a personal blog with my ideas and articles i find interesting</p>
+        <a class="cta" href="#articles">Read latest</a>
+      </div>
+      <div style="width:200px;height:120px;border-radius:12px;background:#1a1d2f;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <div style="text-align:center;color:var(--muted)"><strong style="font-size:20px">Start</strong><div style="font-size:12px">Writing Today</div></div>
+      </div>
+    </section>
+
+    <!-- Articles -->
+    <section id="articles">
+      <h2 style="margin:6px 0 14px;font-family:'Orbitron'">Articles</h2>
+      <div class="posts" id="articles-list"></div>
+    </section>
+
+    <!-- Ideas -->
+    <section id="ideas">
+      <h2 style="margin:6px 0 14px;font-family:'Orbitron'">Ideas</h2>
+      <div class="posts" id="ideas-list"></div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 style="margin:6px 0 14px;font-family:'Orbitron'">Contact</h2>
+      <form class="contact-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your name">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Your email">
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" placeholder="Your message"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <!-- New Post -->
+    <section id="newpost">
+      <h2 style="margin:6px 0 14px;font-family:'Orbitron'">Create New Post</h2>
+      <form class="contact-form" id="post-form">
+        <label for="title">Post Title</label>
+        <input type="text" id="title" placeholder="Enter title" required>
+        <label for="content">Content</label>
+        <textarea id="content" rows="6" placeholder="Write your post..." required></textarea>
+        <label for="category">Category</label>
+        <select id="category">
+          <option value="Articles">Articles</option>
+          <option value="Ideas">Ideas</option>
+        </select>
+        <button type="submit">Publish</button>
+      </form>
+    </section>
+
+    <footer>
+      © 2025 Simple Blog • All Rights Reserved
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+      <button class="delete-btn" onclick="deletePost()">Delete</button>
+    </div>
+  </div>
+
+  <script>
+    let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    let currentPostIndex = null;
+
+    function renderPosts(){
+      const articlesList = document.getElementById('articles-list');
+      const ideasList = document.getElementById('ideas-list');
+      articlesList.innerHTML = '';
+      ideasList.innerHTML = '';
+
+      posts.forEach((post,index)=>{
+        const el = document.createElement('article');
+        el.className = 'post';
+        el.innerHTML = `
+          <div class="meta">
+            <span class="tag">${post.category}</span>
+            <span style="color:var(--muted);font-size:13px">${post.date}</span>
+          </div>
+          <h3>${post.title}</h3>
+          <p>${post.content.substring(0,80)}...</p>`;
+        el.onclick = ()=>openModal(index);
+        if(post.category === 'Articles') articlesList.appendChild(el);
+        else ideasList.appendChild(el);
+      });
+    }
+
+    document.getElementById('post-form').addEventListener('submit',e=>{
+      e.preventDefault();
+      const title=document.getElementById('title').value;
+      const content=document.getElementById('content').value;
+      const category=document.getElementById('category').value;
+      const date=new Date().toLocaleDateString();
+      posts.push({title,content,category,date});
+      localStorage.setItem('posts',JSON.stringify(posts));
+      e.target.reset();
+      renderPosts();
+      alert('Post published!');
+    });
+
+    function openModal(index){
+      currentPostIndex = index;
+      const post = posts[index];
+      document.getElementById('modal-title').innerText = post.title;
+      document.getElementById('modal-body').innerText = post.content;
+      document.getElementById('modal').style.display='flex';
+    }
+
+    function closeModal(){
+      document.getElementById('modal').style.display='none';
+    }
+
+    function deletePost(){
+      if(currentPostIndex !== null){
+        posts.splice(currentPostIndex,1);
+        localStorage.setItem('posts',JSON.stringify(posts));
+        renderPosts();
+        closeModal();
+      }
+    }
+
+    renderPosts();
+  </script>
+</body>
+</html>
